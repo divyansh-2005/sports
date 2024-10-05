@@ -1,58 +1,83 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
-const notifications = [
-  { id: '1', title: 'Order Shipped', description: 'Your order #12345 has been shipped.' },
-  { id: '2', title: 'Discount Offer', description: 'Get 20% off on your next purchase!' },
-  { id: '3', title: 'New Arrivals', description: 'Check out the latest arrivals in our store.' },
-  { id: '4', title: 'Profile Updated', description: 'Your profile has been successfully updated.' },
-  { id: '5', title: 'New Message', description: 'You have a new message from customer support.' },
-];
-
-export default function Notification() {
-  const renderItem = ({ item }) => (
-    <View style={styles.notificationItem}>
-      <Text style={styles.notificationTitle}>{item.title}</Text>
-      <Text style={styles.notificationDescription}>{item.description}</Text>
-    </View>
-  );
-
+const Notification = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Notifications</Text>
-      <FlatList
-        data={notifications}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
+    <ScrollView style={styles.container}>
+      {/* First Notification */}
+      <View style={styles.notification}>
+        <Text style={styles.time}>Today, 10:20</Text>
+        <Text style={styles.title}>LIMITED-TIME PROMO - UP TO 50% OFF!</Text>
+        <Text style={styles.description}>
+          Don’t miss out on this special opportunity! Get up to 50% off on all our sports shoes. Check out our latest collection now!
+        </Text>
+      </View>
+
+      {/* Second Notification */}
+      <View style={[styles.notification, styles.urgent]}>
+        <Text style={styles.time}>Today, 09:05</Text>
+        <Text style={styles.title}>FLASH SALE ALERT - SAVE BIG TODAY!</Text>
+        <Text style={styles.description}>
+          Hurry, our flash sale is live now! Grab your favorite sports shoes at unbeatable prices. This offer won't last long!
+        </Text>
+      </View>
+
+      {/* Third Notification */}
+      <View style={styles.notification}>
+        <Text style={styles.time}>Yesterday, 08:10</Text>
+        <Text style={styles.title}>GOOD MORNING, RUNNER!</Text>
+        <Text style={styles.description}>
+          It’s time to step out and run. Give your best to your body today. Find comfort in every step.
+        </Text>
+      </View>
+
+      {/* Fourth Notification */}
+      <View style={styles.notification}>
+        <Text style={styles.time}>July 13, 2023, 17:30</Text>
+        <Text style={styles.title}>EXCLUSIVE DISCOUNT JUST FOR YOU</Text>
+        <Text style={styles.description}>
+          Hello loyal customers! We want to reward you with an exclusive 15% discount on all our shoe products. Use the code 'EXCLUSIVE15' at checkout.
+        </Text>
+      </View>
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
+    padding: 16,
+    backgroundColor: '#F5F5F5',
   },
-  header: {
-    fontSize: 24,
+  notification: {
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 2,
+  },
+  urgent: {
+    backgroundColor: '#FFF4E1', // Light orange for the urgent notification
+  },
+  time: {
+    color: '#888',
+    fontSize: 12,
+    marginBottom: 8,
+  },
+  title: {
+    fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 8,
+    color: '#333',
   },
-  notificationItem: {
-    backgroundColor: '#f9f9f9',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  notificationTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  notificationDescription: {
+  description: {
     fontSize: 14,
     color: '#555',
   },
 });
+
+export default Notification;
